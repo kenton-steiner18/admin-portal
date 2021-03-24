@@ -1,0 +1,68 @@
+.add-remove-arrows {
+    float: left;
+    margin-left: 25px;
+}
+
+
+.add-remove-arrows input {
+        width: 70%;
+        margin-bottom: 5px;
+    }
+
+.notInGroup, .inGroup {
+    float:left;
+    width: 100%;
+}
+
+#addGroupImage {
+    width:75px;
+    height:75px;
+    margin-bottom:20px;
+    margin-top:10px;
+}
+
+.footer-row {
+    text-align:right;
+}
+
+#createGroupName {
+    margin-top:-7px;
+}
+
+#editGroup {
+    margin:50px;
+    display:none;
+    min-width:650px;
+}
+
+#lstBox1 {
+    text-align:left;
+}
+
+div.header-row {
+    margin:0px;
+}
+
+.notInGroup select, .inGroup select {
+    height: 300px;
+    width: auto !important;
+    min-width: 196px;
+}
+
+.notInGroup select option, .inGroup select option {
+    padding: 4px 10px 4px 0px;
+}
+.notInGroup select option:hover, .inGroup select option:hover {
+    background: #EEEEEE;
+}
+
+    #searchGroupParticipantsBar{
+    width: 100%; /* Full-width */
+      font-size: 16px; /* Increase font-size */
+      padding: 12px 20px 12px 0px; /* Add some padding */
+      margin-bottom: 15px;
+    }
+
+    #searchParticipantsInput {
+        min-height: 40px;
+    }

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speakers</title>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="/__/firebase/8.3.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+   https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="/__/firebase/8.3.0/firebase-analytics.js"></script>
+  <script src="/__/firebase/8.3.0/firebase-auth.js"></script>
+  <script src="/__/firebase/8.3.0/firebase-database.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
+  <script src="/__/firebase/init.js"></script>
+
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <!-- Our Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="../css/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="../css/table.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/speakers.css">
+  <link rel="stylesheet" type="text/css" href="../css/modal.css">
+
+  <script src="../js/speakers.js"></script>
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3> Admin Portal</h3>
+      </div>
+
+      <ul class="list-unstyled components">
+        <p>Admin</p>
+        <li>
+          <a href="home.html">Dashboard</a>
+        </li>
+        <li>
+          <a href="push.html">Push Notifications</a>
+        </li>
+        <li>
+          <a href="events.html">Events</a>
+        </li>
+        <li>
+            <a href="conference.html">Conference Information</a>
+        </li>
+        <li>
+          <a href="participants.html">Participants</a>
+        </li>
+        <li class="active">
+          <a href="speakers.html">Speakers</a>
+        </li>
+        <li>
+          <a href="groups.html">Groups</a>
+        </li>
+        <li>
+          <a href="photos.html">Photos</a>
+        </li>
+        <li onclick="logout()">
+          <a href="#">Logout</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+      <div class="container-fluid">
+        <h1 class="mt-4">Admin Portal</h1>
+        <h2>Speakers</h2>
+        <div>
+          <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search by Name">
+        </div>
+        <button type="button" class="btn " data-toggle="modal" data-target="#addSpeakerModal"><img
+            src="../imgs/addperson.png" alt="Add new participant"
+            style="width:75px;height:75px;"></button>
+      </div>
+
+      <div class="modal fade" role="dialog" tab-index="-1" id="addSpeakerModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h2 class="modal-title">Add New Speaker</h2>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="labelForName">Name:</span>
+                  </div>
+                  <input type="text" id="createName" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="labelForName">Title:</span>
+                  </div>
+                  <input type="text" id="createTitle" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="labelForName">Email:</span>
+                  </div>
+                  <input type="text" id="createEmail" class="form-control">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="labelForName">Description:</span>
+                  </div>
+                  <textarea type="text" id="createDesc" class="form-control"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" onclick="createSpeaker()">Submit</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table id="speakers" class="table table-striped table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Photo </th>
+            <th scope="col"> Name </th>
+            <th scope="col"> Title </th>
+            <th scope="col"> Email </th>
+            <th scope="col"> Description </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody id = "speakersbody"></tbody>
+      </table>
+
+    </div>
+
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+      integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+      crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+      crossorigin="anonymous"></script>
+    <script>$('#addSpeakerModal').on('hidden.bs.modal', function () {
+        $(this)
+          .find("input,textarea")
+          .val('')
+          .end()
+      })
+    </script>
+</body>
+
+</html>

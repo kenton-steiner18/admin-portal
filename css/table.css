@@ -1,0 +1,89 @@
+.form-field {
+    padding: 5px;
+    margin: 5px;
+}
+  
+.form-field:focus {
+    box-shadow: 0 0 5px red;
+    border: 1px solid red;;
+}
+
+table.redTable {
+    font-family: Verdana, Geneva, sans-serif;
+    border: 0px solid red;
+    background-color: white;
+    text-align: center;
+    border-collapse: collapse;
+  }
+
+  table.redTable td, table.redTable th {
+    border: 1px solid gray;
+    padding: 3px 2px;
+  }
+  table.redTable tbody td {
+    font-size: 13px;
+    font-weight: bold;
+    color: gray;
+  }
+  table.redTable tr:nth-child(even) {
+    background: #D3D3D3;
+  }
+  table.redTable thead {
+    background: red;
+    border-bottom: 4px solid gray;
+  }
+  table.redTable thead th {
+    font-size: 19px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    border-left: 4px solid gray;
+  }
+  table.redTable thead th:first-child {
+    border-left: none;
+  }
+  
+  table.redTable tfoot td {
+    font-size: 13px;
+  }
+  table.redTable tfoot .links {
+    text-align: right;
+  }
+  table.redTable tfoot .links a{
+    display: inline-block;
+    background: white;
+    color: red;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+
+  .table thead th {
+    vertical-align: top
+  }
+  .editButton{
+      background-color: gray;
+      color: white;
+  }
+  .deleteButton{
+    background-color:red;
+    color: white;
+  }
+
+  #searchInput {
+    background-image: url('searchicon.png'); /* Add a search icon to input */
+    background-size: contain;
+    background-position:0px 0px;
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 55px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+  }
+
+
+  /* Custom CSS to override default bootstrap styles */
+  .table .thead-light th {
+    background-color: red;
+    color: white;
+  }

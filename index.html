@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conference Admin</title>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCrHzn2kmqc68JyL-NMyo-aPlp2fF__SPA",
+    authDomain: "conference-application-2d211.firebaseapp.com",
+    projectId: "conference-application-2d211",
+    storageBucket: "conference-application-2d211.appspot.com",
+    messagingSenderId: "901608938288",
+    appId: "1:901608938288:web:33839525f36d73944c06f5",
+    measurementId: "G-9R37XPH0FN"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div id="message">
+      <h2 className="text-center">Conference Information Application</h2>
+      <h1 className="text-center">Admin Portal</h1>
+    </div>
+
+    <form class="form-2">
+      <h1><span class="log-in">Log in</span></h1>
+      <p class="float">
+          <label for="login">Username</label>
+          <input type="text" id="txtEmail" name="login" placeholder="Username">
+      </p>
+      <p class="float">
+          <label for="password">Password</label>
+          <input type="password" id="txtPassword" name="password" placeholder="Password" class="showpassword"> 
+      </p>
+      <p class="clearfix">   
+          <input type="submit" id="login" name="submit" value="Log in">
+      </p>       
+  </form>
+
+<script>
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+     window.location = "html/home.html"
+      
+    } else {
+      // User is signed out.
+      // ...
+    }
+  });
+  </script>
+
+  <script>
+    document.querySelector('#login').addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      const email = document.querySelector("#txtEmail").value
+    const pass = document.querySelector("#txtPassword").value
+    firebase.auth().signInWithEmailAndPassword(email, pass).catch(e=>{
+       console.log(e.message)})
+    })
+  
+  </script>
+
+
+
+
+</body>
+
+</html>
